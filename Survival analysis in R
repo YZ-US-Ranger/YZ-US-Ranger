@@ -28,3 +28,14 @@ Historically in survival analysis, the survivor function has been a measure of i
 the most common type of censoring in survival analysis: right censoring. 
 
 The `cens` variable contains values that indicate whether or not a person in the study has died.
+The convention is that the censoring indicator is 1 if the event of interest happened.
+`cens` = 1 means the person died during the study period.
+
+```
+# Count censored and uncensored data
+num_cens <- table(GBSG2$cens)
+num_cens
+
+# Create barplot of censored and uncensored data
+barplot(num_cens)
+```
