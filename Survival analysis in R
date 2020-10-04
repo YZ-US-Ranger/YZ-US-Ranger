@@ -44,6 +44,7 @@ Using the `Surv()` function (which generates a `Surv` object.) for GBSG2
 
 ```
 # Create Surv-Object
+library("survival")
 sobj <- Surv(GBSG2$time, GBSG2$cens)
 
 # Look at 10 first elements
