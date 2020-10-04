@@ -39,3 +39,21 @@ num_cens
 # Create barplot of censored and uncensored data
 barplot(num_cens)
 ```
+
+Using the `Surv()` function (which generates a `Surv` object.) for GBSG2
+
+```
+# Create Surv-Object
+sobj <- Surv(GBSG2$time, GBSG2$cens)
+
+# Look at 10 first elements
+sobj[1:10]
+
+# Look at summary
+summary(sobj)
+
+# Look at structure
+str(sobj)
+```
+
+The `Surv` object allows us to specify that time and cens belong together. Notice that the elements of the object have a `+` symbol if they are censored observations.
