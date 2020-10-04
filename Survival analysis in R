@@ -2,7 +2,7 @@ Instead of calling this course “Survival analysis in R”, we should actually 
 
 We will discuss duration times. Usually, we are interested in a certain event (for example, death) and want to know the time until this event happens. The event of interest can be very diverse, but we are always interested in the time until this event occurs.
 
-```r
+```
 # Check out the help page for this dataset
 help(GBSG2, package = "TH.data")
 
