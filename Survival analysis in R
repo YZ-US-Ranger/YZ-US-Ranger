@@ -1,3 +1,7 @@
+Useful references:
+https://cran.r-project.org/web/views/Survival.html
+
+
 Instead of calling this course “Survival analysis in R”, we should actually have called it “Time-to-event data analysis in R” because we will discuss methods where the event does not have to be death. The reason why we still called it “Survival analysis in R” is because this is the most commonly used term.
 
 We will discuss duration times. Usually, we are interested in a certain event (for example, death) and want to know the time until this event happens. The event of interest can be very diverse, but we are always interested in the time until this event occurs.
