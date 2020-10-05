@@ -79,7 +79,7 @@ Graph: []
 
 Interpretation 1: Probability that duration is longer than t.
 
-Interpretation 2: We can also look at the survival function from the other direction, by fixing a certain quantile. Most popular is looking at the median.
+Interpretation 2: We can also look at the survival function from the other direction, by fixing a certain quantile. Most popular is looking at the median. (The median is the 50%-Quantile.)
 The median duration is t. 
 Examples:
 The median survival time is 3.7 years.
