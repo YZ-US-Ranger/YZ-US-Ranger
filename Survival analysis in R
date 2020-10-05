@@ -70,4 +70,20 @@ The `Surv` object allows us to specify that time and cens belong together. Notic
 
 ## Survival function
 Theory: S(t)=1−F(t)=P(T>t)
-Interpretation: Probability that duration is longer than t.
+
+Interpretation 1: Probability that duration is longer than t.
+Interpretation 2:
+The median duration is t. 
+Examples:
+The median survival time is 3.7 years.
+Median time until the cab arrives is 3.7 minutes.
+
+Examples:
+Probability to survive beyond time point t.
+Probability that the cab takes more than t minutes to arrive.
+
+Interpretation 3:
+100 ⋅ S^(t) percent of durations are longer than t.
+Examples:
+37 percent of all patients survive longer than 4 years. 63 percent die within the first 4 years.
+Out of 100 cabs, 37 take more than 4 minutes to arrive.
