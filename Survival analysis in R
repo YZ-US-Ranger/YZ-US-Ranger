@@ -85,6 +85,8 @@ Examples:
 The median survival time is 3.7 years.
 Median time until the cab arrives is 3.7 minutes.
 
+Graph: []
+
 Examples:
 Probability to survive beyond time point t.
 Probability that the cab takes more than t minutes to arrive.
