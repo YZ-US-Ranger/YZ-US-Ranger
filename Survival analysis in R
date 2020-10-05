@@ -71,6 +71,8 @@ The `Surv` object allows us to specify that time and cens belong together. Notic
 ## Survival function
 Theory: S(t)=1−F(t)=P(T>t)
 
+Graph: []
+
 Interpretation 1: Probability that duration is longer than t.
 Interpretation 2:
 The median duration is t. 
