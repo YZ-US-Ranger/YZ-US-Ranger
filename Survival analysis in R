@@ -106,6 +106,7 @@ d_i denotes the number of individuals dying at t_i.
 You might already know estimators for the cumulative distribution function and wonder: 
 Why don't we just use that and take one minus this estimator to receive an estimator for the survival function?
 This could, in fact, be done if there is no censoring or the estimator is able to deal with censoring, which is usually not the case.
+Kaplan-Meier curves allow for this.
 
 Compare the curve with the data: []
 We see that the survival probability is 1 until the first event occurs at time point 4.
@@ -118,6 +119,8 @@ At time point 3 nobody dies, so the survival probability stays 1, but note how t
 At time point 4 two people die.
 At time point 5 we need to take the previous value 1/2 times the new value.
 At time point 6 nothing changes because there are no deaths.
+
+Key take-away: It only drops when a patient dies.
 
 We can compute the same thing in R using the survfit function.
 
