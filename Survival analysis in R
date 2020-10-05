@@ -71,10 +71,15 @@ The `Surv` object allows us to specify that time and cens belong together. Notic
 ## Survival function
 Theory: S(t)=1−F(t)=P(T>t)
 
+In the survival context, the survival function gives the probability to survive beyond a time point, small t.
+The survival function is just 1 minus the cumulative distribution function.
+The survival function is a function over time and for any point in time you can say how probable it is to survive longer than that point in time.
+
 Graph: []
 
 Interpretation 1: Probability that duration is longer than t.
-Interpretation 2:
+
+Interpretation 2: We can also look at the survival function from the other direction, by fixing a certain quantile. Most popular is looking at the median.
 The median duration is t. 
 Examples:
 The median survival time is 3.7 years.
@@ -84,7 +89,7 @@ Examples:
 Probability to survive beyond time point t.
 Probability that the cab takes more than t minutes to arrive.
 
-Interpretation 3:
+Interpretation 3: The survival curve also gives us the percentage of durations taking longer than t.
 100 ⋅ S^(t) percent of durations are longer than t.
 Examples:
 37 percent of all patients survive longer than 4 years. 63 percent die within the first 4 years.
