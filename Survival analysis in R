@@ -25,7 +25,12 @@ So we need to work with distributions that can handle positive outcomes. The lin
 
 2.Different measures are of interest.
 
-Historically in survival analysis, the survivor function has been a measure of interest.
+Historically in survival analysis, the survivor function or the survival curve has been a measure of interest. 
+Usually, in regression, we think about densities and distribution functions.
+The reason for the popularity of the survivor function is that it essentially answers the main questions in survival analysis. For example,
+What is the probability that a breast cancer patient survives longer than 5 years?
+What is the typical waiting time for a cab?
+Out of 100 unemployed people, how many do we expect to have a job again after 2 months?
 
 3.Censoring (probably the most important)
 
@@ -62,3 +67,7 @@ str(sobj)
 ```
 
 The `Surv` object allows us to specify that time and cens belong together. Notice that the elements of the object have a `+` symbol if they are censored observations.
+
+## Survival function
+Theory: S(t)=1−F(t)=P(T>t)
+Interpretation: Probability that duration is longer than t.
