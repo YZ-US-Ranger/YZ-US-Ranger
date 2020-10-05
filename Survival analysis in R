@@ -70,6 +70,7 @@ The `Surv` object allows us to specify that time and cens belong together. Notic
 
 ## Survival function
 Theory: S(t)=1−F(t)=P(T>t)
+We denote the survival function here by capital S and the cumulative distribution function by capital F.
 
 In the survival context, the survival function gives the probability to survive beyond a time point, small t.
 The survival function is just 1 minus the cumulative distribution function.
@@ -96,3 +97,38 @@ Interpretation 3: The survival curve also gives us the percentage of durations t
 Examples:
 37 percent of all patients survive longer than 4 years. 63 percent die within the first 4 years.
 Out of 100 cabs, 37 take more than 4 minutes to arrive.
+
+## How to estimate the survival function using the Kaplan-Meier estimation
+Formula: [] which tells us to take the product of this stuff here for all previous time points. And we only need to look at time points where something happens.
+n_i denotes the number of individuals under observtion at time point t_i;
+d_i denotes the number of individuals dying at t_i.
+
+You might already know estimators for the cumulative distribution function and wonder: 
+Why don't we just use that and take one minus this estimator to receive an estimator for the survival function?
+This could, in fact, be done if there is no censoring or the estimator is able to deal with censoring, which is usually not the case.
+
+Compare the curve with the data: []
+We see that the survival probability is 1 until the first event occurs at time point 4.
+There it drops quite a bit because two events happen (two people die).
+At time point 5 there is another smaller drop.
+Note that there is no drop at time points where we have censoring, for example, time point 2.
+Note also that we use these marks to visualize the time points of censoring.
+At time point 2, we have 5 individuals under observation, one of them is censored at time point 2 but none die. Note that we do not need to take a product here because all time points before have a value of 1 and 1 times x is the same as x.
+At time point 3 nobody dies, so the survival probability stays 1, but note how the number of individuals under observation has gone down from 5 to 4 due to the censoring of one individual.
+At time point 4 two people die.
+At time point 5 we need to take the previous value 1/2 times the new value.
+At time point 6 nothing changes because there are no deaths.
+
+We can compute the same thing in R using the survfit function.
+
+```
+km <- survfit(Surv(time, event) ~ 1)
+# The 1 behind the tilde shows that we want to compute one survival function for all observations.
+
+ggsurvplot(km, conf.int = FALSE, risk.table = "nrisk_cumevents", legend = "none")
+# To reproduce the plot that we have been looking at, use the ggsurvplot() function.
+# The first argument is the Kaplan-Meier estimate.
+# The conf.int argument signifies if you want a confidence interval, which we don't.
+# risk.table = "nrisk_cumevents" signifies that we would like to see a table with the number of individuals under observation and the sum of events in brackets.
+# We need no legend because we have only one curve of all patients, so we set legend = "none".
+```
