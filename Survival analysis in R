@@ -249,7 +249,7 @@ predict(wb, type = "quantile", p = 1 - 0.9, newdata = data.frame(1))
 ```
 
 p = 1 - 0.9 because the distribution function is 1 - the survival function.
-Setting the type argument to quantile allows us to compute the quantiles of the distribution function.
+Setting the type argument to quantile allows us to compute the quantiles of the distribution function. We can use this to compute the median survival. (p = 0.5)
 The newdata argument allows us to enter a specific patient. This is only really relevant if we discuss the case where there are covariates in the model.
 
 Outcome: 384. 90% of patients survive more than 384 days.
@@ -262,8 +262,15 @@ From this, we can then create a data frame that we can use for plotting.
 ```
 wb <- survreg(Surv(time, cens) ~ 1, data = GBSG2)
 
+# Retrieve survival curve from model probabilities 
 surv <- seq(.99, .01, by = -.01)
+
+# Get time for each probability
+
+# Create data frame with the information
 t <- predict(wb, type = "quantile", p = 1 - surv, newdata = data.frame(1))
+
+# Look at first few lines of the result
 head(data.frame(time = t, surv = surv))
 ```
 
