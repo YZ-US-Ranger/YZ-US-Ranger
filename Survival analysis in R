@@ -219,3 +219,57 @@ km <- survfit(Surv(time, obs_end) ~ 1, data = dancedat)
 ggsurvplot_combine(list(correct = km, wrong = km_wrong))
 ```
 See how ignoring censoring underestimates your friends' dancing stamina? The correct analysis (red curve) shows that your friends actually dance longer than the incorrect blue curve suggests.
+
+## The Weibull model for estimating smooth survival curves
+
+The Weibull model: an alternative to the Kaplan-Meier estimate
+Although the Kaplan-Meier estimate is quite powerful and used by many people, it is used mostly as a descriptive tool for looking at the data.
+Also, it approximates the survival curve with a step function. Graph: []
+You can view the Kaplan-Meier curve similar to a histogram. It is a good way for looking at the data.
+The Weibull model produces a survival curve that is not a step function but it is smooth.
+Using a Weibull model instead of a Kaplan-Meier curve is like using a linear model instead of using a histogram.
+The distribution we assume here is - as the name says - the Weibull distribution. It seems that this assumption works quite well in the example you see here.
+
+Computing a Weibull model in R can be done with the survreg function from the survival package.
+
+```
+wb <- survreg(Surv(time, event) ~ 1, data)
+```
+
+In fact, it looks quite similar to using survfit to estimate a Kaplan-Meier estimate.
+The only difference is the reg(which stands for REGression) in survreg instead of the fit in survfit.
+
+Computing measures from a Weibull model
+
+```
+wb <- survreg(Surv(time, cens) ~ 1, data = GBSG2)
+
+# 90 Percent of patients survive beyond time point:
+predict(wb, type = "quantile", p = 1 - 0.9, newdata = data.frame(1))
+```
+
+p = 1 - 0.9 because the distribution function is 1 - the survival function.
+Setting the type argument to quantile allows us to compute the quantiles of the distribution function.
+The newdata argument allows us to enter a specific patient. This is only really relevant if we discuss the case where there are covariates in the model.
+
+Outcome: 384. 90% of patients survive more than 384 days.
+
+Using the predict function, we can also then compute the survival function. We just need to enter many quantiles. This approximation is good enough for plotting.
+So here we create a grid form .99 to .01 in steps of .01.
+The usage of the function is the same as before, just that we enter a vector of quantiles instead of a single value.
+From this, we can then create a data frame that we can use for plotting.
+
+```
+wb <- survreg(Surv(time, cens) ~ 1, data = GBSG2)
+
+surv <- seq(.99, .01, by = -.01)
+t <- predict(wb, type = "quantile", p = 1 - surv, newdata = data.frame(1))
+head(data.frame(time = t, surv = surv))
+```
+
+
+
+
+
+
+
