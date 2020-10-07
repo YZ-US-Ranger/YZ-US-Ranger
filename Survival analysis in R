@@ -293,7 +293,24 @@ The argument surv.geom lets us specify that our model generates a smooth functio
 
 Key Take-away: Weibull model estimates a smooth survival function.
 
+The survival of patients may be interesting in general, but often we want to know how a treatment or the severity of an illness affects the survival of the patients.
 
+Graph: []
+In this image, you see several survival curves that were estimated by a Weibull model.
+
+```
+wbmod <- survreg(Surv(time, cens) ~ horTh + tsize, data = GBSG2) 
+coef(wbmod)
+```
+
+Instead of the value 1, we write down the covariates behind the tilde.
+A positive effect suggeses an increased time until the event - in this case, death - happens.
+
+Visualizing effects of categorical variables such as hormonal therapy is easy.
+You can plot one survival curve per treatment option.
+For metric variables, it gets a bit more tricky. You need to choose certain values which to visualize.
+For the tumor size, I chose the 25, 50, and 75% quantiles and plotted the three values 20, 25, and 35 mm.
+Instead of using quantiles you could choose values that are of particular interest to you, such as the tumor size of a certain patient.
 
 
 
