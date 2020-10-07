@@ -274,7 +274,22 @@ t <- predict(wb, type = "quantile", p = 1 - surv, newdata = data.frame(1))
 head(data.frame(time = t, surv = surv))
 ```
 
+## Visualizing a Weibull model
 
+```
+wb <- survreg(Surv(time, cens) ~ 1)
+
+# Survival curve:
+surv <- seq(.99, .01, by = -.01)
+t <- predict(wb, type = "quantile", p = 1 - surv, newdata = data.frame(1))
+surv_wb <- data.frame(time = t, surv = surv,
+upper = NA, lower = NA, std.err = NA)
+
+# Plot:
+ggsurvplot_df(fit = surv_wb, surv.geom = geom_line)
+```
+
+The argument surv.geom lets us specify that our model generates a smooth function and thus we need geom_line instead of geom_step, which we would need to use for plotting the Kaplan-Meier curve.
 
 
 
