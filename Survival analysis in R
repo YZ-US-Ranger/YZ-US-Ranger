@@ -291,6 +291,8 @@ ggsurvplot_df(fit = surv_wb, surv.geom = geom_line)
 
 The argument surv.geom lets us specify that our model generates a smooth function and thus we need geom_line instead of geom_step, which we would need to use for plotting the Kaplan-Meier curve.
 
+Key Take-away: Weibull model estimates a smooth survival function.
+
 
 
 
